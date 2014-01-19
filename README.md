@@ -8,19 +8,20 @@ This project uses ABBYY Cloud OCR SDK Api and tabula Api.
 
 About ABBYY Cloud OCR SDK:
 
-* github:  https://github.com/abbyysdk/ocrsdk.com/tree/master/Python
+* https://github.com/abbyysdk/ocrsdk.com/tree/master/Python
 
-	AbbyyOnlineSdk.py
+	`AbbyyOnlineSdk.py
 	MultipartPostHandler.py
 	process.py
+	`
 
 * You can run it on a command line to test:
 
-	process.py <input fie> <output file> -pdf
+	`process.py <input fie> <output file> -pdfSearchable`
 
 About tabula:
  
-* webpage:  http://tabula.nerdpower.org/
+* http://tabula.nerdpower.org/
 
 This project is under construction.  To be added:
 
