@@ -14,13 +14,13 @@ About ABBYY Cloud OCR SDK:
 	MultipartPostHandler.py
 	process.py
 
-*You can run it on a command line to test:
+* You can run it on a command line to test:
 
 	process.py <input fie> <output file> -pdf
 
 About tabula:
  
-*webpage:  http://tabula.nerdpower.org/
+* webpage:  http://tabula.nerdpower.org/
 
 This project is under construction.  To be added:
 
