@@ -1,32 +1,46 @@
-This is a project to liberate 3,800 pages of data from PDF found on the Jersey City Website: http://www.cityofjerseycity.com/pub-info.aspx?id=2430.  
+## About the project
 
-You can find the corresponding GIST here:  https://gist.github.com/adlukasiak/8500562
+This is a project to liberate 3,871 pages of historical data from PDF found on the [Jersey City Website] (http://www.cityofjerseycity.com/pub-info.aspx?id=2430).  
 
-To run, open python notebook:
+You can find the corresponding Gist [here](https://gist.github.com/adlukasiak/8500562).
 
-	ipython notebook
+The extracted data will be uploaded to [Open JC Open Data Portal](https://data.openjerseycity.org/dataset/jersey-city-2013-budget-adopted-spending).
 
-This project uses ABBYY Cloud OCR SDK Api and tabula Api.
+[OpenSpending](https://openspending.org/)-like visualization will be made to the public on the [Jersey City Budget](http://openjerseycity.org/JerseyCityBudget/) site.
 
-About ABBYY Cloud OCR SDK:
+This project is built by [Open JC](http://openjerseycity.org/), a [Code for America](http://codeforamerica.org/) brigade.
 
-* https://github.com/abbyysdk/ocrsdk.com/tree/master/Python
+---
 
-	`AbbyyOnlineSdk.py
-	MultipartPostHandler.py
-	process.py
-	`
+## Instructions to run the project
+
+#### Open python notebook
+
+On the command line, type:
+
+`ipython notebook`
+
+#### ABBYY Cloud OCR SDK:
+
+This project uses [ABBYY Cloud OCR SDK Api](http://cloud.ocrsdk.com/Account/Welcome) and [tabula Api](https://source.opennews.org/en-US/articles/introducing-tabula/).
+
+* Python code sample that was utilized: https://github.com/abbyysdk/ocrsdk.com/tree/master/Python
 
 * You can manually run it on a command line to test:
 
 	`process.py <input fie> <output file> -pdfSearchable`
 
-About tabula:
+#### Tabula:
  
-* http://tabula.nerdpower.org/
+* Browser version:  http://tabula.nerdpower.org/
+* Command-line version:  https://github.com/jazzido/tabula-extractor
 
-This project is under construction.  To be added:
+#### Next steps:
 
-* Conversion from searchable pdf to csv using tabula.  One table to one csv file
+This project is under construction.  
+
+To be added:
+
+* Conversion from searchable pdf to csv using command-line [tabula-extractor](https://github.com/jazzido/tabula-extractor).  One table to one csv file.
 * Data scraping.  Extract only the line items ignoring the rollups + link all spending to accounts, programs, divisions and departments, etc
 * Upload the scraped data as .csv and hierarchical .json into data.openjerseycity.org so it can be used for visualization projects, like http://openjerseycity.org/JerseyCityBudget/.
