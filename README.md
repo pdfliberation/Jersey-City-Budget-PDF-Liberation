@@ -1,4 +1,6 @@
-This is a project to liberate 3,800 pages of data from PDF found on the Jersey City Website: http://www.cityofjerseycity.com/pub-info.aspx?id=2430.  You can find the corresponding GIST here:  https://gist.github.com/adlukasiak/8500562
+This is a project to liberate 3,800 pages of data from PDF found on the Jersey City Website: http://www.cityofjerseycity.com/pub-info.aspx?id=2430.  
+
+You can find the corresponding GIST here:  https://gist.github.com/adlukasiak/8500562
 
 To run, open python notebook:
 
@@ -15,7 +17,7 @@ About ABBYY Cloud OCR SDK:
 	process.py
 	`
 
-* You can run it on a command line to test:
+* You can manually run it on a command line to test:
 
 	`process.py <input fie> <output file> -pdfSearchable`
 
@@ -25,6 +27,6 @@ About tabula:
 
 This project is under construction.  To be added:
 
-* conversion from searchable pdf to csv using tabula
-* data scraping (extract only the line items ignoring the rollup + link all spending items to accounts, programs, divisions and departments)
-* upload the scraped data as .csv and hierarchical .json into data.openjerseycity.org so it can be used for visualization projects
+* Conversion from searchable pdf to csv using tabula.  One table to one csv file
+* Data scraping.  Extract only the line items ignoring the rollups + link all spending to accounts, programs, divisions and departments, etc
+* Upload the scraped data as .csv and hierarchical .json into data.openjerseycity.org so it can be used for visualization projects, like http://openjerseycity.org/JerseyCityBudget/.
