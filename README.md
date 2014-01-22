@@ -39,7 +39,7 @@ This project uses [ABBYY Cloud OCR SDK Api](http://cloud.ocrsdk.com/Account/Welc
 #### Tabula:
 
 * Non-interactive version of [Tabula](https://source.opennews.org/en-US/articles/introducing-tabula/) table parser was used to convert searchable PDF files to CSV files.
-* We run the tabula with the `-p` and `-n` options, converting one page of the PDF document and saving each page into a seperate CSV file.  The `-r` option did not produce results because the tables in PDF use `-` and `|` instead of cell borders.
+* We run the tabula with the `-p` and `-n` options, converting one page of the PDF document and saving each page into a seperate CSV file.  The `-r` option did not produce results because the tables in PDF use "-" and "|" instead of solid cell border lines.
 
 	`tabula-extractor/bin/tabula -p 11 -f CSV -n -o destination_file.csv file_to_convert.pdf`
 	
@@ -67,7 +67,7 @@ This project is under construction.
 
 To be added:
 
-* Function to scan CSV files, detect tables that run accross multiple pages and combine them into single cvs file.
+* Function to scan CSV files (the last step produced one CSV file per PDF page), detect tables that run accross multiple pages and combine them into single cvs file.
 * Data scraping.  Extract only the line items ignoring the rollups + link all spending to accounts, programs, divisions and departments, etc
 * Upload the scraped data as .csv and hierarchical .json into data.openjerseycity.org so it can be used for visualization projects, like http://openjerseycity.org/JerseyCityBudget/.
 
