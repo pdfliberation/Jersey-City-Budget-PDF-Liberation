@@ -31,8 +31,9 @@ class Task:
 
 class AbbyyOnlineSdk:
 	ServerUrl = "http://cloud.ocrsdk.com/"
-	ApplicationId = "JC Budget"
-	Password = "vpkmfRUXnI85t43NPxW3xTvd"
+	ApplicationId = os.environ.get("ABBYY_APPID") 
+	Password = os.environ.get("ABBYY_PASS")
+	print "Anna",ApplicationId, Password
 	Proxy = None
 	enableDebugging = 0
 
