@@ -1,6 +1,10 @@
 ## About the project
 
-This is a project to liberate 3,871 pages of historical data from PDF found on the [Jersey City Website] (http://www.cityofjerseycity.com/pub-info.aspx?id=2430).  
+In Jersey City, we wanted the public to be more educated about the budget and city finances. So we started a project to convert the 37 scanned PDF documents and total of 3,871 pages available on the city's website into interactive visualizations.  Inspired by the OpenSpending and Open Budget Oakland projects, we quickly build a page with place for public comment, but then realized that getting the data out of the scanned PDFs is no simple task.  The PDF Liberation hackathon was our missing link.
+
+At the PDF Liberation Hackathon, the goal was automate the process by creating a framework.  Our first step was to convert non searchable PDFs to searchable PDFs with the ABBYY Cloud OCR SDK API.  The second step was to convert searchable PDF files to CSV files using the non-interactive version of Tabula pable parser.  The results of the table parser are not completely accurate but can be cleaned up by programming some higher-level heuristics.  To complete the project, we would like to convert the CSV into a hierarchical data model and leverage existing solutions to publish budget visualizations. 
+
+The PDF files with historical data can be found on the [Jersey City Website] (http://www.cityofjerseycity.com/pub-info.aspx?id=2430).  
 
 You can find the corresponding Gist [here](https://gist.github.com/adlukasiak/8500562).
 
