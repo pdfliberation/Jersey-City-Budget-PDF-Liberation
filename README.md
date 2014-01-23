@@ -22,27 +22,39 @@ This project is built by [Open JC](http://openjerseycity.org/), a [Code for Amer
 
 On the command line, type:
 
-`ipython notebook`
-
+	ipython notebook
+    
+    
 This project uses [ABBYY Cloud OCR SDK Api](http://cloud.ocrsdk.com/Account/Welcome) to convert non-searchable pdf files to searchable pdf file and [tabula Api](https://source.opennews.org/en-US/articles/introducing-tabula/) to convert searchable files to CSV files.
 
 #### ABBYY Cloud OCR SDK:
 
 * [ABBYY Cloud OCR SDK Api](http://cloud.ocrsdk.com/Account/Welcome) was used to convert non-searchable pdf files to searchable pdf file.
 * ABBYY is a commercial PDF solution vendor.  For the PDF Liberation Hackathon, we were allowed to perform Optical Character Recognition on up to 5000 pages for free with Abbyy’s cloud based (no installation) solution.  Thank you ABBYY!
-* To run the OCR portion, you will need to get ABBYY account.  Once you setup your account, you will receive an email with ApplicationId and Password that you will need to set `ABBYY_APPID=YourApplicationId` and `ABBYY_PASS=YourPassword` environment variables.
+* To run the OCR portion, you will need to get ABBYY account.  Once you setup your account, you will receive an email with ApplicationId and Password that you will need to set `ABBYY_APPID` and `ABBYY_PASS` environment variables.  For example, if you are using bash shell:
+
+
+	```
+	export ABBYY_APPID=YourApplicationId
+	export ABBYY_PASS=YourPassword
+	```
+
 
 * Python code sample that was utilized: https://github.com/abbyysdk/ocrsdk.com/tree/master/Python
 * You can manually run it on a command line to test:
 
-	`process.py <input fie> <output file> -pdfSearchable`
+	```
+	process.py <input fie> <output file> -pdfSearchable
+	```
 
 #### Tabula:
 
 * Non-interactive version of [Tabula](https://source.opennews.org/en-US/articles/introducing-tabula/) table parser was used to convert searchable PDF files to CSV files.
 * We run the tabula with the `-p` and `-n` options, converting one page of the PDF document and saving each page into a seperate CSV file.  The `-r` option did not produce results because the tables in PDF use "-" and "|" instead of solid cell border lines.
 
-	`tabula-extractor/bin/tabula -p 11 -f CSV -n -o destination_file.csv file_to_convert.pdf`
+	```
+	tabula-extractor/bin/tabula -p 11 -f CSV -n -o destination_file.csv file_to_convert.pdf
+	```
 	
                                   
               --pages, -p <s>:  Comma separated list of ranges. Examples: --pages
