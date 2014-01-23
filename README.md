@@ -30,7 +30,8 @@ This project uses [ABBYY Cloud OCR SDK Api](http://cloud.ocrsdk.com/Account/Welc
 
 * [ABBYY Cloud OCR SDK Api](http://cloud.ocrsdk.com/Account/Welcome) was used to convert non-searchable pdf files to searchable pdf file.
 * ABBYY is a commercial PDF solution vendor.  For the PDF Liberation Hackathon, we were allowed to perform Optical Character Recognition on up to 5000 pages for free with Abbyy’s cloud based (no installation) solution.  Thank you ABBYY!
-* To run the OCR portion, you will need to get ABBYY account.
+* To run the OCR portion, you will need to get ABBYY account.  Once you setup your account, you will receive an email with ApplicationId and Password that you will need to set `ABBYY_APPID=YourApplicationId` and `ABBYY_PASS=YourPassword` environment variables.
+
 * Python code sample that was utilized: https://github.com/abbyysdk/ocrsdk.com/tree/master/Python
 * You can manually run it on a command line to test:
 
