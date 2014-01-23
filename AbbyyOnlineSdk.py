@@ -33,7 +33,6 @@ class AbbyyOnlineSdk:
 	ServerUrl = "http://cloud.ocrsdk.com/"
 	ApplicationId = os.environ.get("ABBYY_APPID") 
 	Password = os.environ.get("ABBYY_PASS")
-	print "Anna",ApplicationId, Password
 	Proxy = None
 	enableDebugging = 0
 
