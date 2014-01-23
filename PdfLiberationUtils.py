@@ -25,14 +25,14 @@ def get_pdf_files(env):
             local_file = local_file.replace(")","")
             local_file = local_file.replace("<br/>","")+".pdf"
             # TODO: convert pdf_files to dictionary....
-            pdf_files.append( [
-                env["root_url"]+pdf_file, 
-                pdf_file, 
-                env["dir_download"]+local_file,
-                env["dir_ocr"]+local_file,
-                env["dir_csv"]+local_file,
-                env["dir_final"]+local_file
-            ] )
+            pdf_files.append( {
+                "url"                : env["url"]+pdf_file, 
+                "pdf_file"           : pdf_file, 
+                "download_file_name" : env["dir_download"]+local_file,
+                "ocr_file_name"      : env["dir_ocr"]+local_file,
+                "csv_file_name"      : env["dir_csv"]+local_file,
+                "dir_final"          : env["dir_final"]+local_file
+            } )
     return pdf_files    
 
 #
@@ -176,15 +176,15 @@ def get_status(pdf_files):
     # Merged CSV Status - TODO
 
     data = ([
-        pdf_file[0],
-        pdf_file[2].replace("./download/",""),
-        file_exists(pdf_file[2]),
-        num_pages(pdf_file[2]),
-        is_searchable(pdf_file[2]),
-        file_exists(pdf_file[3]) #applies only if not searchable
+        pdf_file["url"],
+        pdf_file["download_file_name"].replace("./download/",""),
+        file_exists(pdf_file["download_file_name"]),
+        num_pages(pdf_file["download_file_name"]),
+        is_searchable(pdf_file["download_file_name"]),
+        file_exists(pdf_file["ocr_file_name"]) #applies only if not searchable
         ] for pdf_file in pdf_files)
 
-    idx = ([pdf_file[2].replace("./download/","") for pdf_file in pdf_files])
+    idx = ([pdf_file["download_file_name"].replace("./download/","") for pdf_file in pdf_files])
 
     cols = ("url","file_name","download_status","num_pages","is_searchable","ocr_status")
 
