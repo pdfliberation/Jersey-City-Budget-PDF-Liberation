@@ -27,10 +27,9 @@ def get_pdf_files(env):
             # TODO: convert pdf_files to dictionary....
             pdf_files.append( {
                 "url"                : env["url"]+pdf_file, 
-                "pdf_file"           : pdf_file, 
                 "download_file_name" : env["dir_download"]+local_file,
                 "ocr_file_name"      : env["dir_ocr"]+local_file,
-                "csv_file_name"      : env["dir_csv"]+local_file,
+                "csv_file_name"      : env["dir_csv"]+local_file.replace(".pdf","_xx.csv"),
                 "dir_final"          : env["dir_final"]+local_file
             } )
     return pdf_files    
@@ -102,7 +101,9 @@ def num_pages( file_name ):
 
 #
 # Tabula will split one CSV file per each page of PDF file.  
-# Need to figure out the name of each CSV file.
+# The target csv file name is calculated from it's input file's name.
+# The ".pdf" suffix is replced with "_XX.csv"
+# where XX is the page number.  
 #
 
 def calcualte_csv_output_file_name(file_name, page_number=1):
@@ -142,10 +143,21 @@ def convert_page_to_csv(file_name,page_number=1 ):
             cmd += " " + file_name #name of file to convert
             print cmd
             rr = envoy.run(cmd)
-            print rr.status_code
-            print rr.std_out
-            print rr.std_err
+            if rr.status_code != 0:
+            	print rr.status_code
+            	print rr.std_out
+            	print rr.std_err
             print "done..."
+
+#
+# Wrapper around convert_page_to_csv()
+# Loops through all pages and creates csv per page 
+#
+
+def convert_pdf_to_csv(file_name):
+    
+    for page_number in range(1,num_pages(file_name)+1):
+        convert_page_to_csv(file_name,page_number)
 
 #
 # Test is file was sucessfully processed.
@@ -158,6 +170,18 @@ def file_exists(file_name):
         return True
     else:
         return False
+
+#
+# Loops through all csvs file that correspond to one multi-page pdf
+# Returns True if all files were generated
+# Returns False is one of the files is missing
+#
+
+def csv_file_complete(file_name):
+    for pn in range(1,num_pages(file_name)+1):
+        if not (file_exists("./csv/"+calcualte_csv_output_file_name(file_name,pn))):
+            return False
+        return True
 
 #
 # Get status of the process
@@ -181,14 +205,36 @@ def get_status(pdf_files):
         file_exists(pdf_file["download_file_name"]),
         num_pages(pdf_file["download_file_name"]),
         is_searchable(pdf_file["download_file_name"]),
-        file_exists(pdf_file["ocr_file_name"]) #applies only if not searchable
+        file_exists(pdf_file["ocr_file_name"]), #applies only if not searchable
+        csv_file_complete(pdf_file["download_file_name"])
         ] for pdf_file in pdf_files)
 
     idx = ([pdf_file["download_file_name"].replace("./download/","") for pdf_file in pdf_files])
 
-    cols = ("url","file_name","download_status","num_pages","is_searchable","ocr_status")
+    cols = ("url","file_name","download_status","num_pages","is_searchable","ocr_status","csv_status")
 
     df = pd.DataFrame(list(data),index=list(idx),columns=cols)
     
     return df
+
+#
+# Get header, number of columns
+#
+
+import csv
+
+def analyze_csv_content(file_name):
+
+    dd = {"csv_file_name":file_name,"consistent_cols":True}
+    with open(file_name, 'rb') as csvfile:
+        r = csv.reader(csvfile, delimiter=',', quotechar='"')  
+        first = True    
+        for row in r:
+            if first is True:
+                first = False
+                dd["header"] = row[0]
+                dd["cols"] = len(row)
+            if len(row) != dd["cols"]:
+                dd["consistent_cols"] = False
+    return dd
 
